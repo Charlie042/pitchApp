@@ -46,6 +46,9 @@
     .text-14-normal {
         @apply font-normal text-sm text-white-100/80;
     }
+    .text-15-normal {
+        @apply font-normal text-sm text-white-100/80 rounded-full bg-black; 
+    }
 
     .pink_container {
         @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
@@ -68,7 +71,7 @@
     }
 
     .card_grid {
-        @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+        @apply grid md:grid-cols-3 sm:grid-cols-2 gap-7;
     }
 
     .card_grid-sm {

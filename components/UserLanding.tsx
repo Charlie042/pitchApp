@@ -1,18 +1,20 @@
 import SearchForm from "./SearchForm";
 import StartUpCard from "./StartUpCard";
-import { StartUpCardProps } from "../utils/types";
-import { formatDate } from "../utils";
+import { StartUpCardProps } from "../types/otherTypes";
+import { post } from "../data/post";
 
-const post =[{
-  date: formatDate(new Date()),
-  id: 1,
-  title: "Pitch Your Startup, Connect with Entrepreneurs",
-  description: "Submit Ideas, Vote on Pitches, and Get Noticed in Virtual Competitions",
-  image: "/images/post1.png"
-}]
-
-const UserLanding = async ({searchParams}: {searchParams: Promise<{query: string}>}) => {
+const UserLanding = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ query: string }>;
+}) => {
   const query = (await searchParams)?.query;
+
+  const filteredPosts = query
+    ? post.filter((item) =>
+        item.title.toLowerCase().includes(query.toLowerCase()) || item.category.toLowerCase().includes(query.toLowerCase())
+      )
+    : post;
   return (
     <>
       <section className="pink_container">
@@ -28,14 +30,21 @@ const UserLanding = async ({searchParams}: {searchParams: Promise<{query: string
         <SearchForm query={query} />
       </section>
       <div className="section_container">
-        <p className="text-30-semibold">{query ? `Showing results for ${query}` : "Search for a pitch"}</p>
-      </div>
-      <div className="section_container">
-       {post.length > 0 ? post.map((item:StartUpCardProps) => (
-          <div key={item.id}>
-            <StartUpCard key={item.id} post={item}/>
-          </div>
-        )) : <p>No results found</p>}
+        <p className="text-30-semibold mb-10">
+          {query ? `Showing results for ${query}` : "All Pitches"}
+        </p>
+
+        <ul className="card_grid">
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((item: StartUpCardProps) => (
+              <div key={item._id}>
+                <StartUpCard key={item._id} post={item} />
+              </div>
+            ))
+          ) : (
+            <p>No results found</p>
+          )}
+        </ul>
       </div>
     </>
   );

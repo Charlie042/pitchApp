@@ -3,7 +3,7 @@ import React, { Suspense } from 'react'
 import Image from 'next/image'
 import { auth } from '@/auth'
 import { signIn, signOut } from '@/auth'
-import { UserProfile } from '@/types/auth' // You'll need to create this type
+import { UserProfile } from '@/types/authType' // You'll need to create this type
 
 // Separate component for authenticated user menu
 const UserMenu = ({ user }: { user: UserProfile }) => (
