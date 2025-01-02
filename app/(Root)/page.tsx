@@ -11,9 +11,7 @@ export default async function Home({
   return (
     <>
       {session && <UserLanding searchParams={Promise.resolve(searchParams)} />}
-      {!session && <LandingPage />}
-        
+      {!session && <LandingPage />}h
     </>
   );
 }
-

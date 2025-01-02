@@ -1,6 +1,6 @@
 export type StartUpCardProps = {
   _id:number;
-  createdAt: string;
+  _createdAt: string;
   views: number;
   author: {_id:number, name: string};
   title: string;

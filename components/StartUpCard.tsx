@@ -4,11 +4,12 @@ import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { formatDate } from "@/lib/utils";
 
 const StartUpCard = ({ post }: { post: StartUpCardProps }) => {
   const {
     _id,
-    createdAt,
+    _createdAt,
     views,
     author: { _id: authorId, name: authorName },
     title,
@@ -19,7 +20,7 @@ const StartUpCard = ({ post }: { post: StartUpCardProps }) => {
   return (
     <li className="startup-card group" key={_id}>
       <div className="flex-between">
-        <p className="startup-card_date">{createdAt}</p>
+        <p className="startup-card_date">{formatDate(new Date(_createdAt))}</p>
         <div className="flex gap-1.5">
           <EyeIcon className="text-primary size-6 hover:text-white" />
           <span className="text-16-medium">{views}</span>

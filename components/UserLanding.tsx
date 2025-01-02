@@ -11,7 +11,7 @@ const UserLanding = async ({
   const query = (await searchParams)?.query;
 
   const filteredPosts = query
-    ? post.filter((item) =>
+    ? post.filter((item: StartUpCardProps) =>
         item.title.toLowerCase().includes(query.toLowerCase()) || item.category.toLowerCase().includes(query.toLowerCase())
       )
     : post;
